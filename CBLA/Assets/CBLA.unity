@@ -148,6 +148,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CLAB: {fileID: 50812206}
+  AvailableAcions:
+  - {fileID: 11400000, guid: eedcf85910df9e74c97215bb365ae0bf, type: 2}
+  - {fileID: 11400000, guid: 98b805891da284040a0d283db99c32c8, type: 2}
+  - {fileID: 11400000, guid: 6bb27087d4884dd4a8213530e4a4d4f3, type: 2}
+  Sensors:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   moveMultiplyer: 0.2
   right: {x: 0, y: 5, z: 0}
   left: {x: 0, y: -5, z: 0}

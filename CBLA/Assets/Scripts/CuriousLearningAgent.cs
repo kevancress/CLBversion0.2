@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CuriousLearningAgent: MonoBehaviour {
     public GameObject CLAB;
+    public List<ActionBase> AvailableAcions;
+    public List<SensorBase> Sensors;
     public float moveMultiplyer = 0.01f;
     public Vector3 right = new Vector3(0f,10f,0f);
     public Vector3 left = new Vector3(0f, -10f, 0f);
@@ -13,7 +15,6 @@ public class CuriousLearningAgent: MonoBehaviour {
     public float threshold = 1f;
     Expert expert;
     KGA kga;
-    Learner learner;
     List<Memory> memory;
     List<ErrorMemory> eMemory;
     List<RewardMemory> rMemory;
@@ -24,18 +25,27 @@ public class CuriousLearningAgent: MonoBehaviour {
         CLAB = gameObject;
         expert = CLAB.GetComponent<Expert>();
         kga = CLAB.GetComponent<KGA>();
-        learner = CLAB.GetComponent<Learner>();
         memory = expert.memory;
         eMemory = kga.ememory;
         rMemory = expert.rMemory;
         expert.AddToMemory(CLAB);
+
+        //provide actions with reference to their current Object;
+        foreach (ActionBase action in AvailableAcions)
+        {
+            action.actor = CLAB;
+        }
+
+        foreach (ActionBase action in AvailableAcions)
+        {
+            action.actor = CLAB;
+        }
+
+
     }
 
     void OnEnable()
     {
-        Learner.OnAction1 += Move;
-        Learner.OnAction2 += RotateRight;
-        Learner.OnAction3 += RotateLeft;
 
     }
 
@@ -43,7 +53,8 @@ public class CuriousLearningAgent: MonoBehaviour {
     {
        
         int bestAction = expert.EvaluateAction(rMemory,threshold,samples);
-        int lastAction = learner.CallAction(bestAction);
+        int lastAction = bestAction;
+        AvailableAcions[bestAction].DoAction(CLAB);
         expert.AddToMemory(CLAB);
         float predictionError = expert.PredictionError(memory, CLAB, lastAction);
         //Debug.Log("prediction Error" + predictionError);
@@ -60,9 +71,7 @@ public class CuriousLearningAgent: MonoBehaviour {
 	
 	void OnDisabel()
     {
-        Learner.OnAction1 -= Move;
-        Learner.OnAction2 -= RotateRight;
-        Learner.OnAction3 -= RotateLeft;
+
     }
 
 
