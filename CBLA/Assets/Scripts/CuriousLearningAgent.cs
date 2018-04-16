@@ -20,6 +20,9 @@ public class CuriousLearningAgent: MonoBehaviour {
     List<ErrorMemory> eMemory;
     List<RewardMemory> rMemory;
     double sensorReading;
+    CharacterController controller;
+    public float gravity;
+    Vector3 gravityVector;
 	// Use this for initialization
 
     void Start()
@@ -34,13 +37,15 @@ public class CuriousLearningAgent: MonoBehaviour {
         predictionModel = GetComponent<PredictionModel>();
         sensorReading = ReadSensors(sensors);
         predictionModel.SensoryActionDataAtT.Add(double.Parse(sensorReading.ToString() + "0"));
+        controller = GetComponent<CharacterController>();
+        gravityVector = new Vector3(0, gravity, 0);
     }
 
 
     void FixedUpdate()
     {
        
-        int bestAction = expert.EvaluateAction(rMemory,threshold,samples);
+        int bestAction = expert.EvaluateAction(rMemory,threshold,samples,availableAcions);
         sensorReading = ReadSensors(sensors);
         predictionModel.SensoryActionDataAtT.Add(double.Parse(sensorReading.ToString() + bestAction.ToString()));
         double prediction = expert.MakePredition(double.Parse(sensorReading.ToString() + bestAction.ToString()));
@@ -62,7 +67,13 @@ public class CuriousLearningAgent: MonoBehaviour {
         //Debug.Log("meta Error" + meanError);
         float reward = kga.Reward(meanError, metaError);
         Debug.Log("reward" + reward*10);
-        expert.AddToRewardMemory(CLAB, reward*10, lastAction);  
+        expert.AddToRewardMemory(CLAB, reward*10, lastAction);
+
+        if (!controller.isGrounded)
+        {
+            controller.Move(gravityVector);
+        }
+        
 
     }
 

@@ -44,12 +44,12 @@ public class Expert : MonoBehaviour {
         return errorMagnitude;      
     }
 
-    public int EvaluateAction(List<RewardMemory> rMemory, float threshold, int minSamples)
+    public int EvaluateAction(List<RewardMemory> rMemory, float threshold, int minSamples,List<ActionBase> availableActions)
     {
         if (rMemory.Count < minSamples)
         {
             Debug.Log("Initial Random Actions");
-            return (Mathf.RoundToInt(Random.RandomRange(0f, 2f)));
+            return (Mathf.RoundToInt(Random.Range(0f, availableActions.Count - 1)));
         }
 
         else
@@ -64,7 +64,7 @@ public class Expert : MonoBehaviour {
                 Debug.Log("Action Selected");
             }
                 Debug.Log("Action Below Threshold");
-                return (Mathf.RoundToInt(Random.RandomRange(0f, 2f)));
+                return (Mathf.RoundToInt(Random.Range(0f, availableActions.Count-1)));
         }
     }
 }
