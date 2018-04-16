@@ -33,13 +33,14 @@ public class Expert : MonoBehaviour {
     public double MakePredition(double sensorAction)
     {
         predictionModel.UpdateModel();
+        predictionModel.DebugModel();
         return predictionModel.MakePrediction(sensorAction);
 
     }
 
     public float PredictionError(double predictedSensorState,double currentSensorState)
     {   
-        float errorMagnitude = Mathf.Abs((float)currentSensorState - (float)predictedSensorState);
+        float errorMagnitude = (Mathf.Abs((float)currentSensorState - (float)predictedSensorState))/((float)currentSensorState+(float)predictedSensorState);
 
         return errorMagnitude;      
     }

@@ -11,6 +11,7 @@ public class PredictionModel : MonoBehaviour {
     public List<double> SensoryDataAtTPlus1 = new List<double>();
     double intercept;
     double slope;
+    Vector3 debugDataPoint;
 
     void Start()
     {
@@ -50,6 +51,21 @@ public class PredictionModel : MonoBehaviour {
     {
         double prediction = (slope * SensorAction) + intercept;
         return prediction;
+    }
+
+    public void DebugModel()
+    {
+        Vector3 FitLineStart = new Vector3(0, (float)intercept/1000, 0);
+        Vector3 FitLineEnd = new Vector3(100000, (100000 * (float)slope) + (float)intercept/1000, 0);
+        Debug.DrawLine(FitLineStart, FitLineEnd, Color.red, .1f, false);
+        for (int i = 0; i < (SensoryActionDataAtT.Count-1); i++)
+        {
+            if (i < (SensoryDataAtTPlus1.Count - 1))
+            {
+                debugDataPoint = new Vector3((float)SensoryActionDataAtT[i]/10000, (float)SensoryDataAtTPlus1[i]/10000, 0);
+                Debug.DrawLine(debugDataPoint,debugDataPoint+(Vector3.forward*100),Color.blue,.1f,false);
+            }
+        }
     }
 
 }

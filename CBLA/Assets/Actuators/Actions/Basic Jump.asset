@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActionName: Basic Jump
   actor: {fileID: 0}
-  JumpAmount: 100
+  JumpVector: {x: 0, y: 100, z: 50}
