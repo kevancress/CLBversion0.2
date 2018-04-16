@@ -5,10 +5,12 @@ using UnityEngine;
 public class Expert : MonoBehaviour {
     public GameObject CLAB;
     public float Error;
+    public PredictionModel predictionModel;
     public List<Memory> memory = new List<Memory>();
     public List<RewardMemory> rMemory = new List<RewardMemory>();
     void Start () {
         CLAB = GameObject.Find("CLAB");
+        predictionModel = gameObject.GetComponent<PredictionModel>();
 	}
 
 	
@@ -28,41 +30,16 @@ public class Expert : MonoBehaviour {
         rMemory.Add(new RewardMemory(PatT, RatT,reward,action));
     }
 
-    public float PredictionError(List<Memory> memory, GameObject CLAB, int action)
+    public double MakePredition(double sensorAction)
     {
-        CuriousLearningAgent cla = CLAB.GetComponent<CuriousLearningAgent>();
-        float expectedMoveMultiplyer = cla.moveMultiplyer;
-        Vector3 expectedRight = cla.right;
-        Vector3 expectedLeft = cla.left;
+        predictionModel.UpdateModel();
+        return predictionModel.MakePrediction(sensorAction);
 
-        Vector3 currentPos = memory[memory.Count - 1].positionAtTime;
-        Vector3 pastPos = memory[memory.Count - 2].positionAtTime;
-        Vector3 currentRot = memory[memory.Count - 1].rotationAtTime;
-        Vector3 pastRot = memory[memory.Count - 2].rotationAtTime;
+    }
 
-        int action0Multiplyer=0;
-        int action1Multiplyer=0;
-        int action2Multiplyer=0;
-        if (action == 0)
-        {
-            action0Multiplyer = 1;
-        }
-
-        if (action == 1)
-        {
-            action1Multiplyer = 1;
-        }
-
-        if (action == 2)
-        {
-            action2Multiplyer = 1;
-        }
-        Vector3 forwardXY = new Vector3(CLAB.transform.forward.x, 0f, CLAB.transform.forward.z);
-        Vector3 expectedPos = pastPos + (forwardXY*expectedMoveMultiplyer*action0Multiplyer);
-        Vector3 expectedRot = pastRot + (expectedRight * action1Multiplyer)+(expectedLeft*action2Multiplyer);
-        Vector3 errorPos = currentPos - expectedPos;
-        Vector3 errorRot = currentRot - expectedRot;
-        float errorMagnitude = Vector3.Magnitude(errorPos);
+    public float PredictionError(double predictedSensorState,double currentSensorState)
+    {   
+        float errorMagnitude = Mathf.Abs((float)currentSensorState - (float)predictedSensorState);
 
         return errorMagnitude;      
     }
