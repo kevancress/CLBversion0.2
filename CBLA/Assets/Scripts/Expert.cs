@@ -39,13 +39,11 @@ public class Expert : MonoBehaviour {
         if (rMemory.Count < minSamples)
         {
             Debug.Log("Initial Random Actions");
-            return (Mathf.RoundToInt(Random.Range(0f, availableActions.Count - 1)));
+            return UnityEngine.Random.Range(0, availableActions.Count);
         }
 
         else
         {
-            Vector3 currentPos = CLAB.transform.position;
-            Vector3 currentRot = CLAB.transform.eulerAngles;
             RewardMemory lastmemory = rMemory[rMemory.Count - 1];
 
             if (lastmemory.reward > threshold) 
@@ -54,7 +52,7 @@ public class Expert : MonoBehaviour {
                 Debug.Log("Action Selected");
             }
                 Debug.Log("Action Below Threshold");
-                return (Mathf.RoundToInt(Random.Range(0f, availableActions.Count-1)));
+                return UnityEngine.Random.Range(0, availableActions.Count);
         }
     }
 }

@@ -7,7 +7,10 @@ public class RotateAction : ActionBase {
     public Vector3 rotationVector;
     public override void DoAction(GameObject actor)
     {
+        Vector3 LocalMoveVector = new Vector3(0, -9.8f * Time.deltaTime, 0);
         base.DoAction(actor);
-        actor.transform.Rotate(rotationVector);
+        CharacterController controller= actor.GetComponent<CharacterController>();
+        controller.transform.Rotate(rotationVector);
+        controller.Move(LocalMoveVector);
     }
 }

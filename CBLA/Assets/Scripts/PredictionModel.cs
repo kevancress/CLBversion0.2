@@ -58,14 +58,19 @@ public class PredictionModel : MonoBehaviour {
 
     public void DebugModel()
     {
-        Vector3 FitLineStart = new Vector3(0, (float)intercept/100000000, 0);
-        Vector3 FitLineEnd = new Vector3(100, (100 * (float)slope) + (float)intercept/ 100000000, 0);
+        float scaleFactor = .1f;
+        for (int i = 0; i < cla.sensors.Count*2; i++)
+        {
+            scaleFactor *= 10;
+        }
+        Vector3 FitLineStart = new Vector3(0, (float)intercept/scaleFactor, 0);
+        Vector3 FitLineEnd = new Vector3(100, (100 * (float)slope) + (float)intercept/ scaleFactor, 0);
         Debug.DrawLine(FitLineStart, FitLineEnd,FitLineColour, .1f, false);
         for (int i = 0; i < (SensoryActionDataAtT.Count-1); i++)
         {
             if (i < (SensoryDataAtTPlus1.Count - 1))
             {
-                debugDataPoint = new Vector3((float)SensoryActionDataAtT[i]/1000000000, (float)SensoryDataAtTPlus1[i]/1000000000, 0);
+                debugDataPoint = new Vector3((float)SensoryActionDataAtT[i]/scaleFactor, (float)SensoryDataAtTPlus1[i]/scaleFactor, 0);
                 Debug.DrawLine(debugDataPoint,debugDataPoint+(Vector3.forward*1),DataPointColour,.1f,false);
             }
         }

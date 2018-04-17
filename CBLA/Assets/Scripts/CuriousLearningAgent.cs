@@ -12,7 +12,8 @@ public class CuriousLearningAgent: MonoBehaviour {
     public int samples = 100;
     public int MetaMemOffset = 25;
     public int MaxMemorySamples;
-    public float threshold = 1f;
+    public float thresholdMultiplier;
+    float threshold;
     Expert expert;
     KGA kga;
     PredictionModel predictionModel;
@@ -54,7 +55,7 @@ public class CuriousLearningAgent: MonoBehaviour {
         int lastAction = bestAction;
         
         float predictionError = expert.PredictionError(prediction,sensorReading);
-        Debug.Log("prediction Error:" + predictionError);
+        //Debug.Log("Prediction Error:" + predictionError);
         //Debug.Log("prediction Error" + predictionError);
         kga.AddToErrorMemory(predictionError);
         float meanError = kga.MeanError(eMemory, samples);
@@ -62,13 +63,15 @@ public class CuriousLearningAgent: MonoBehaviour {
         float metaError = kga.MetaM(eMemory, samples, MetaMemOffset);
         //Debug.Log("meta Error" + meanError);
         float reward = kga.Reward(meanError, metaError);
-        Debug.Log("reward" + reward*10);
+        Debug.Log("Reward: " + reward*10 + " To Action: "+ lastAction);
         expert.AddToRewardMemory(reward*10, lastAction);
 
         CullErrorMemory(eMemory, MaxMemorySamples);
         CullRewardMemory(rMemory, MaxMemorySamples);
         CullPredictionMemory(predictionModel.SensoryDataAtTPlus1, MaxMemorySamples);
         CullPredictionMemory(predictionModel.SensoryActionDataAtT, MaxMemorySamples);
+        UpdateThreshold();
+        // Debug.Log("New Threshold: " + threshold);
 
     }
 
@@ -109,7 +112,7 @@ public class CuriousLearningAgent: MonoBehaviour {
             }
             
         }
-        Debug.Log("concatinated Sensor result:" + concatenatedResult);
+        //Debug.Log("concatinated Sensor result:" + concatenatedResult);
         return concatenatedResult;
     }
 
@@ -154,5 +157,23 @@ public class CuriousLearningAgent: MonoBehaviour {
                 memList.RemoveAt(0);
             }
         }
+    }
+
+    private void UpdateThreshold()
+    {
+        float sumReward=0;
+        float meanReward;
+        foreach (RewardMemory rMem in rMemory)
+        {
+            sumReward += rMem.reward;
+        }
+
+        if (rMemory.Count != 0)
+        {
+            meanReward = sumReward / rMemory.Count;
+            threshold = meanReward * thresholdMultiplier;
+            
+        }
+        
     }
 }

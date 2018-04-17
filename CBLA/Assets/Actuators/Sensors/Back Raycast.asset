@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SensorName: Back Raycast
   actor: {fileID: 0}
-  range: 100
+  range: 400
   raycastSourceName: BackRaycastSource
-  debugRayColor: {r: 0, g: 0, b: 1, a: 1}
+  debugRayColor: {r: 0, g: 0, b: 1, a: 0.11764706}

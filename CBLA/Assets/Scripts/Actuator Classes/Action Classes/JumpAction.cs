@@ -14,13 +14,13 @@ public class JumpAction : ActionBase {
         Vector3 gravityVector = new Vector3(0, (-9.8f), 0);
         if (controller.isGrounded)
         {
-            Debug.Log("controller Grounded");
+            //Debug.Log("controller Grounded");
             controller.Move(JumpVector*Time.deltaTime);
         }
         else
         {
             controller.Move(gravityVector * Time.deltaTime);
-            Debug.Log("controller not Grounded");
+            //Debug.Log("controller not Grounded");
         }
     }
 }

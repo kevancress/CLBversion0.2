@@ -8,11 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f46003fea6adf245875713cb223f772, type: 3}
-  m_Name: Left Raycast
+  m_Script: {fileID: 11500000, guid: ad1a87e094904194ab122c60ac758659, type: 3}
+  m_Name: Jump Left
   m_EditorClassIdentifier: 
-  SensorName: Left Raycast
+  ActionName: 
   actor: {fileID: 0}
-  range: 400
-  raycastSourceName: LeftRaycastSource
-  debugRayColor: {r: 1, g: 0, b: 0, a: 0.11764706}
+  JumpVector: {x: -50, y: 50, z: 0}

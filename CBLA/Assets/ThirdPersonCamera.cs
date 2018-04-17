@@ -9,6 +9,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 	public Transform target;
 	public float dstFromTarget = 2;
 	public Vector2 pitchMinMax = new Vector2 (-40, 85);
+    public float height;
 
 	public float rotationSmoothTime = .12f;
 	Vector3 rotationSmoothVelocity;
@@ -46,8 +47,8 @@ public class ThirdPersonCamera : MonoBehaviour {
 
 		currentRotation = Vector3.SmoothDamp (currentRotation, new Vector3 (pitch, yaw), ref rotationSmoothVelocity, rotationSmoothTime);
 		transform.eulerAngles = currentRotation;
-
-		transform.position = target.position + transform.forward*offset.z + transform.up*offset.y + transform.right*offset.x;
+        Vector3 newTargetPosition = new Vector3(target.position.x, height, target.position.z);
+		transform.position = newTargetPosition + transform.forward*offset.z + transform.up*offset.y + transform.right*offset.x;
 
 	}
 

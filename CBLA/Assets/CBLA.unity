@@ -810,7 +810,12 @@ Prefab:
     - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
         type: 2}
       propertyPath: sensors.Array.size
-      value: 5
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: availableAcions.Array.size
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4115691344988804, guid: 39d73b7ad23b58b44bb929dc79a7949f, type: 2}
       propertyPath: m_LocalPosition.x
@@ -847,7 +852,7 @@ Prefab:
     - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
         type: 2}
       propertyPath: MaxMemorySamples
-      value: 0
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 114545775685768134, guid: 39d73b7ad23b58b44bb929dc79a7949f,
         type: 2}
@@ -893,7 +898,109 @@ Prefab:
         type: 2}
       propertyPath: sensors.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: 419fa7d42e239a44db06d3342f7150b9,
+      objectReference: {fileID: 11400000, guid: 4d5e97aac03e26e4cbbe1c62308436a5,
+        type: 2}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: thresholdOffset
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: thresholdMultiplier
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: availableAcions.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6bb27087d4884dd4a8213530e4a4d4f3,
+        type: 2}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: MetaMemOffset
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: samples
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4263395305766736, guid: 39d73b7ad23b58b44bb929dc79a7949f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: sensors.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4d5e97aac03e26e4cbbe1c62308436a5,
+        type: 2}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: sensors.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e2fe57dc2b75953439d8c3d0c96f95e9,
+        type: 2}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: sensors.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: cda83de895cc8704d8b55a497fcaa964,
+        type: 2}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: sensors.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: de70aab31efdd8d40a9dedebecdc6af2,
+        type: 2}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: sensors.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: e2fe57dc2b75953439d8c3d0c96f95e9,
+        type: 2}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: sensors.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: cda83de895cc8704d8b55a497fcaa964,
+        type: 2}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: sensors.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: de70aab31efdd8d40a9dedebecdc6af2,
+        type: 2}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: availableAcions.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 98b805891da284040a0d283db99c32c8,
+        type: 2}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: availableAcions.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: bc48a950a7f5fc344b775d576a862205,
+        type: 2}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: availableAcions.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3ccf8abe3f0c8b44ab573538922bab95,
+        type: 2}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: availableAcions.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 417dc94efc00fd04db8e56d3a7d45b55,
+        type: 2}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: availableAcions.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 19ff06fcc0010d64da4200b27874197a,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 39d73b7ad23b58b44bb929dc79a7949f, type: 2}
@@ -1579,6 +1686,7 @@ MonoBehaviour:
   target: {fileID: 50812211}
   dstFromTarget: 0
   pitchMinMax: {x: -40, y: 85}
+  height: 0
   rotationSmoothTime: 0.12
   offset: {x: 0, y: 0, z: -20}
 --- !u!1 &1834125083
