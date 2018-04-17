@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SensoryMotorMemory {
+public class SensoryMotorMemory:Memory {
 
     public double sensoryState;
     public double actionTaken;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ErrorMemory {
+public class ErrorMemory : Memory {
 
     public float error;
 

@@ -807,6 +807,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: sensors.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4115691344988804, guid: 39d73b7ad23b58b44bb929dc79a7949f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -839,6 +844,57 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: MaxMemorySamples
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114545775685768134, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: FitLineColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114545775685768134, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: FitLineColour.r
+      value: 0.7793107
+      objectReference: {fileID: 0}
+    - target: {fileID: 114545775685768134, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: FitLineColour.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114545775685768134, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: FitLineColour.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114545775685768134, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: DataPointColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114545775685768134, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: DataPointColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114545775685768134, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: DataPointColour.g
+      value: 0.51724136
+      objectReference: {fileID: 0}
+    - target: {fileID: 114545775685768134, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: DataPointColour.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114485216654493862, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+        type: 2}
+      propertyPath: sensors.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 419fa7d42e239a44db06d3342f7150b9,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 39d73b7ad23b58b44bb929dc79a7949f, type: 2}
   m_IsPrefabParent: 0
@@ -1055,6 +1111,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1209450771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1748965850085798, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1209450772}
+  m_Layer: 0
+  m_Name: DownRaycastSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1209450772
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4263395305766736, guid: 39d73b7ad23b58b44bb929dc79a7949f,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1209450771}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.51, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 50812211}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1224835569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,12 +1575,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockCursor: 0
-  mouseSensitivity: 10
+  mouseSensitivity: 1
   target: {fileID: 50812211}
   dstFromTarget: 0
   pitchMinMax: {x: -40, y: 85}
   rotationSmoothTime: 0.12
-  offset: {x: 0, y: 0, z: -10}
+  offset: {x: 0, y: 0, z: -20}
 --- !u!1 &1834125083
 GameObject:
   m_ObjectHideFlags: 0

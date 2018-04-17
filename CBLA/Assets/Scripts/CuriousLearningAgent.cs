@@ -10,13 +10,12 @@ public class CuriousLearningAgent: MonoBehaviour {
     public PredictionModel PredictionModel;
     public int actionSelected;
     public int samples = 100;
-    public int offset = 25;
+    public int MetaMemOffset = 25;
+    public int MaxMemorySamples;
     public float threshold = 1f;
     Expert expert;
     KGA kga;
     PredictionModel predictionModel;
-    public List <SensoryMotorMemory> smMemory;
-    List<Memory> memory;
     List<ErrorMemory> eMemory;
     List<RewardMemory> rMemory;
     double sensorReading;
@@ -30,10 +29,8 @@ public class CuriousLearningAgent: MonoBehaviour {
         CLAB = gameObject;
         expert = CLAB.GetComponent<Expert>();
         kga = CLAB.GetComponent<KGA>();
-        memory = expert.memory;
         eMemory = kga.ememory;
         rMemory = expert.rMemory;
-        expert.AddToMemory(CLAB);
         predictionModel = GetComponent<PredictionModel>();
         sensorReading = ReadSensors(sensors);
         predictionModel.SensoryActionDataAtT.Add(double.Parse(sensorReading.ToString() + "0"));
@@ -55,7 +52,6 @@ public class CuriousLearningAgent: MonoBehaviour {
         sensorReading = ReadSensors(sensors);
         predictionModel.SensoryDataAtTPlus1.Add(sensorReading);
         int lastAction = bestAction;
-        expert.AddToMemory(CLAB);
         
         float predictionError = expert.PredictionError(prediction,sensorReading);
         Debug.Log("prediction Error:" + predictionError);
@@ -63,17 +59,16 @@ public class CuriousLearningAgent: MonoBehaviour {
         kga.AddToErrorMemory(predictionError);
         float meanError = kga.MeanError(eMemory, samples);
         //Debug.Log("mean Error" + meanError);
-        float metaError = kga.MetaM(eMemory, samples, offset);
+        float metaError = kga.MetaM(eMemory, samples, MetaMemOffset);
         //Debug.Log("meta Error" + meanError);
         float reward = kga.Reward(meanError, metaError);
         Debug.Log("reward" + reward*10);
-        expert.AddToRewardMemory(CLAB, reward*10, lastAction);
+        expert.AddToRewardMemory(reward*10, lastAction);
 
-        if (!controller.isGrounded)
-        {
-            controller.Move(gravityVector);
-        }
-        
+        CullErrorMemory(eMemory, MaxMemorySamples);
+        CullRewardMemory(rMemory, MaxMemorySamples);
+        CullPredictionMemory(predictionModel.SensoryDataAtTPlus1, MaxMemorySamples);
+        CullPredictionMemory(predictionModel.SensoryActionDataAtT, MaxMemorySamples);
 
     }
 
@@ -116,5 +111,48 @@ public class CuriousLearningAgent: MonoBehaviour {
         }
         Debug.Log("concatinated Sensor result:" + concatenatedResult);
         return concatenatedResult;
+    }
+
+    private void CullErrorMemory(List<ErrorMemory> memList, int maxSamples)
+    {
+        if (maxSamples == 0)
+        {
+            return;
+        }
+        else if (memList.Count>maxSamples)
+        {
+            while (memList.Count > maxSamples)
+            {
+                memList.RemoveAt(0);
+            }
+        }
+    }
+    private void CullRewardMemory(List<RewardMemory> memList, int maxSamples)
+    {
+        if (maxSamples == 0)
+        {
+            return;
+        }
+        else if (memList.Count > maxSamples)
+        {
+            while (memList.Count > maxSamples)
+            {
+                memList.RemoveAt(0);
+            }
+        }
+    }
+    private void CullPredictionMemory(List<double> memList, int maxSamples)
+    {
+        if (maxSamples == 0)
+        {
+            return;
+        }
+        else if (memList.Count > maxSamples)
+        {
+            while (memList.Count > maxSamples)
+            {
+                memList.RemoveAt(0);
+            }
+        }
     }
 }

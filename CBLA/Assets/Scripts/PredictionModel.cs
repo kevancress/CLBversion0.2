@@ -7,17 +7,20 @@ public class PredictionModel : MonoBehaviour {
     Expert expert;
     CuriousLearningAgent cla;
     List<SensoryMotorMemory> smMemory;
+    [HideInInspector]
     public List<double> SensoryActionDataAtT = new List<double>();
+    [HideInInspector]
     public List<double> SensoryDataAtTPlus1 = new List<double>();
     double intercept;
     double slope;
     Vector3 debugDataPoint;
+    public Color FitLineColour;
+    public Color DataPointColour;
 
     void Start()
     {
         expert = gameObject.GetComponent<Expert>();
         cla = gameObject.GetComponent < CuriousLearningAgent>();
-        smMemory = cla.smMemory;
     }
 
     public void UpdateModel()
@@ -55,15 +58,15 @@ public class PredictionModel : MonoBehaviour {
 
     public void DebugModel()
     {
-        Vector3 FitLineStart = new Vector3(0, (float)intercept/1000, 0);
-        Vector3 FitLineEnd = new Vector3(100000, (100000 * (float)slope) + (float)intercept/1000, 0);
-        Debug.DrawLine(FitLineStart, FitLineEnd, Color.red, .1f, false);
+        Vector3 FitLineStart = new Vector3(0, (float)intercept/100000000, 0);
+        Vector3 FitLineEnd = new Vector3(100, (100 * (float)slope) + (float)intercept/ 100000000, 0);
+        Debug.DrawLine(FitLineStart, FitLineEnd,FitLineColour, .1f, false);
         for (int i = 0; i < (SensoryActionDataAtT.Count-1); i++)
         {
             if (i < (SensoryDataAtTPlus1.Count - 1))
             {
-                debugDataPoint = new Vector3((float)SensoryActionDataAtT[i]/10000, (float)SensoryDataAtTPlus1[i]/10000, 0);
-                Debug.DrawLine(debugDataPoint,debugDataPoint+(Vector3.forward*100),Color.blue,.1f,false);
+                debugDataPoint = new Vector3((float)SensoryActionDataAtT[i]/1000000000, (float)SensoryDataAtTPlus1[i]/1000000000, 0);
+                Debug.DrawLine(debugDataPoint,debugDataPoint+(Vector3.forward*1),DataPointColour,.1f,false);
             }
         }
     }

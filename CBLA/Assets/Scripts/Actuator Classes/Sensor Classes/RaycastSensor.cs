@@ -7,12 +7,14 @@ public class RaycastSensor : SensorBase
     public float range;
     public string raycastSourceName;
     Transform raycastSource;
+    public Color debugRayColor;
 
     public override float DoSense(GameObject actor)
     {
         raycastSource = actor.transform.Find(raycastSourceName);
         float sensorOputput;
         RaycastHit hit;
+        
         if (Physics.Raycast(raycastSource.position, raycastSource.forward, out hit, range))
         {
             sensorOputput = (hit.distance / range);
@@ -21,6 +23,7 @@ public class RaycastSensor : SensorBase
         {
             sensorOputput = 0;
         }
+        Debug.DrawRay(raycastSource.position, raycastSource.forward * hit.distance, debugRayColor, Time.deltaTime, true);
         return sensorOputput;
 
     }

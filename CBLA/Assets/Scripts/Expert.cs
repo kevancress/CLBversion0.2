@@ -6,7 +6,6 @@ public class Expert : MonoBehaviour {
     public GameObject CLAB;
     public float Error;
     public PredictionModel predictionModel;
-    public List<Memory> memory = new List<Memory>();
     public List<RewardMemory> rMemory = new List<RewardMemory>();
     void Start () {
         CLAB = GameObject.Find("CLAB");
@@ -14,20 +13,10 @@ public class Expert : MonoBehaviour {
 	}
 
 	
-    public void AddToMemory (GameObject CLAB)
-    {
-        Vector3 PatT = CLAB.transform.position;
-        Vector3 RatT = CLAB.transform.eulerAngles;
-     
-        memory.Add(new Memory (PatT, RatT));
-    }
 
-    public void AddToRewardMemory(GameObject CLAB, float reward, int action)
+    public void AddToRewardMemory( float reward, int action)
     {
-        Vector3 PatT = CLAB.transform.position;
-        Vector3 RatT = CLAB.transform.eulerAngles;
-
-        rMemory.Add(new RewardMemory(PatT, RatT,reward,action));
+        rMemory.Add(new RewardMemory(reward,action));
     }
 
     public double MakePredition(double sensorAction)

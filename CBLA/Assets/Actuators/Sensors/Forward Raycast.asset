@@ -13,5 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SensorName: Forward Raycast
   actor: {fileID: 0}
-  range: 100
+  range: 500
   raycastSourceName: ForwardRaycastSource
+  debugRayColor: {r: 0, g: 0, b: 1, a: 1}
